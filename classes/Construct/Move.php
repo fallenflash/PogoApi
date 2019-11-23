@@ -2,7 +2,7 @@
 
 namespace PogoApi\Construct;
 
-class Move extends Construct
+class Move
 {
 
     public $name;
@@ -11,6 +11,7 @@ class Move extends Construct
     public $power;
     public $buffs;
 
+    use \PogoApi\Traits\Construct;
 
     public function __construct($move)
     {
@@ -50,23 +51,5 @@ class Move extends Construct
             }
         }
         return $buffs;
-    }
-
-    private function name($name)
-    {
-        $name = str_replace('_', ' ', $name);
-        $name = strtolower($name);
-        $name = ucwords($name);
-        return $name;
-    }
-
-    private function type($type)
-    {
-        global $PogoApi;
-        $type = str_replace('POKEMON_TYPE_', '', $type);
-        $type = str_to_lower($type);
-        $type = ucfirst($type);
-        $type = $PogoApi->types->$type;
-        return $type;
     }
 }
